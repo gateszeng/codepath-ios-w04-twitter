@@ -13,6 +13,8 @@
 		345CC44C1E654781005F67A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 345CC44B1E654781005F67A7 /* Assets.xcassets */; };
 		345CC44F1E654781005F67A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 345CC44D1E654781005F67A7 /* LaunchScreen.storyboard */; };
 		345CC4571E654E7F005F67A7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CC4561E654E7F005F67A7 /* LoginViewController.swift */; };
+		345CC45C1E656248005F67A7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CC45B1E656248005F67A7 /* User.swift */; };
+		345CC45E1E65624F005F67A7 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CC45D1E65624F005F67A7 /* Tweet.swift */; };
 		5A0E1C0D3CE6B373FDA7686A /* Pods_tweeter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8AA00D4AD1DE48FB1F3EA56 /* Pods_tweeter.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +28,8 @@
 		345CC44E1E654781005F67A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		345CC4501E654781005F67A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		345CC4561E654E7F005F67A7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		345CC45B1E656248005F67A7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		345CC45D1E65624F005F67A7 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		3F00F887DDD5F17FF59546E3 /* Pods-tweeter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tweeter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tweeter/Pods-tweeter.debug.xcconfig"; sourceTree = "<group>"; };
 		E8AA00D4AD1DE48FB1F3EA56 /* Pods_tweeter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tweeter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -63,15 +67,41 @@
 		345CC4431E654781005F67A7 /* tweeter */ = {
 			isa = PBXGroup;
 			children = (
+				345CC45A1E656204005F67A7 /* API */,
+				345CC4591E6561FC005F67A7 /* View Controllers */,
+				345CC4581E6561F5005F67A7 /* Models */,
 				345CC4441E654781005F67A7 /* AppDelegate.swift */,
-				345CC4461E654781005F67A7 /* ViewController.swift */,
 				345CC4481E654781005F67A7 /* Main.storyboard */,
 				345CC44B1E654781005F67A7 /* Assets.xcassets */,
 				345CC44D1E654781005F67A7 /* LaunchScreen.storyboard */,
 				345CC4501E654781005F67A7 /* Info.plist */,
-				345CC4561E654E7F005F67A7 /* LoginViewController.swift */,
 			);
 			path = tweeter;
+			sourceTree = "<group>";
+		};
+		345CC4581E6561F5005F67A7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				345CC45B1E656248005F67A7 /* User.swift */,
+				345CC45D1E65624F005F67A7 /* Tweet.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		345CC4591E6561FC005F67A7 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				345CC4461E654781005F67A7 /* ViewController.swift */,
+				345CC4561E654E7F005F67A7 /* LoginViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		345CC45A1E656204005F67A7 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 		ABF80C1072B321180011E192 /* Pods */ = {
@@ -214,6 +244,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				345CC45C1E656248005F67A7 /* User.swift in Sources */,
+				345CC45E1E65624F005F67A7 /* Tweet.swift in Sources */,
 				345CC4571E654E7F005F67A7 /* LoginViewController.swift in Sources */,
 				345CC4471E654781005F67A7 /* ViewController.swift in Sources */,
 				345CC4451E654781005F67A7 /* AppDelegate.swift in Sources */,
