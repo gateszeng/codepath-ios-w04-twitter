@@ -11,16 +11,22 @@ import BDBOAuth1Manager
 
 class TwitterClient: BDBOAuth1SessionManager {
     
+    
+    // singleton
     static let sharedInstance = TwitterClient(baseURL: URL(string: "https://api.twitter.com"), consumerKey: "LxPkUGN5gBgehW5Ga464yFlSa", consumerSecret: "iUZ8CJaOkwKV2tXl3dT83DQkij5EawhMfCb52ooEBzf9dMu8MQ")
     
     var loginSuccess: (() -> ())?
     var loginFailure: ((Error) ->())?
 
+    // login takes closures for success and failure
     func login(success: @escaping () -> (), failure: @escaping (Error) -> ()) {
         loginSuccess = success
         loginFailure = failure
         
+        // first log out
         TwitterClient.sharedInstance?.deauthorize()
+        
+        // then fetch the request token to get authorization link
         TwitterClient.sharedInstance?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string: "tweeter://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential?) -> Void in
             let url = URL(string: "https://api.twitter.com/oauth/authorize?=oauth_token=\(requestToken!.token!)")
             UIApplication.shared.open(url!)
@@ -31,11 +37,28 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    func logout() {
+        User.currentUser = nil
+        deauthorize()
+        
+        // sends messages that allows many parts of the application to receive
+        NotificationCenter.default.post(name: User.userDidLogoutNotification, object: nil)
+    }
+    
+    // handle the url opening to app and get access token
     func handleOpenUrl(url: URL) {
         let requestToken = BDBOAuth1Credential(queryString: url.query)
         
         fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken!, success: { (accessToken: BDBOAuth1Credential?) in
-            self.loginSuccess?()
+            
+            // get the current account
+            self.currentAccount(success: { (user: User) in
+                User.currentUser = user
+                self.loginSuccess?()
+                
+                }, failure: { (error: Error) in
+                    self.loginFailure?(error)
+            })
             
             }, failure: { (error: Error?) in
                 print("error: \(error!.localizedDescription)")
@@ -43,20 +66,17 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
-    func currentAccount() {
+    // if successful, return user obj, otherwise error
+    func currentAccount(success: @escaping (User) -> (), failure: @escaping (Error) -> ()) {
         get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
             print("account: \(response)")
             
             let userDictionary = response as! NSDictionary
-            
             let user = User(dictionary: userDictionary)
-            
-            print("name: \(user.name)")
-            print("screenname: \(user.screenname)")
-            print("profile url: \(user.profileURL)")
-            print("description: \(user.tagline)")
-            
-            }, failure: { (task: URLSessionDataTask?, error: Error) in
+
+            success(user)
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
         })
     }
     

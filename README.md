@@ -2,15 +2,15 @@
 
 **Tweeter** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: **X** hours spent in total
+Time spent: **6** hours spent in total
 
 ## User Stories
 
 The following **required** functionality is completed:
 
-- [ ] User can sign in using OAuth login flow
+- [x] User can sign in using OAuth login flow
 - [ ] User can view last 20 tweets from their home timeline
-- [ ] The current signed in user will be persisted across restarts
+- [x] The current signed in user will be persisted across restarts
 - [ ] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.
 - [ ] Retweeting and favoriting should increment the retweet and favorite count.
 
@@ -40,6 +40,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Notes
 
 Describe any challenges encountered while building the app.
+A lot of the syntax was different between the video and the options that Xcode as actually giving me.  I had to figure out and play around with the method signatures to get the right methods that I wanted.  For example, with regards to the JSONSerialization methods, I accidentally swapped the methods I actually needed.
 
 ## License
 

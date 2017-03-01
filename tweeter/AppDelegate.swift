@@ -17,6 +17,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if User.currentUser != nil {
+            print("There is a current user")
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+            
+            window?.rootViewController = vc
+        }
+        
+        // listener for when UserDidLogout is run
+        NotificationCenter.default.addObserver(forName: User.userDidLogoutNotification, object: nil, queue: OperationQueue.main) { (Notification) in
+            
+            // sets the view controller to the initial one
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateInitialViewController()
+            
+            self.window?.rootViewController = vc
+        }
+        
         return true
     }
 
@@ -44,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         
-        let client = TwitterClient.sharedInstance?.handleOpenUrl(url: url)
+        TwitterClient.sharedInstance?.handleOpenUrl(url: url)
 
         return true
     }

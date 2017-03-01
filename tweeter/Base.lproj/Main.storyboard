@@ -59,16 +59,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="BSk-aR-knd"/>
+                    <navigationItem key="navigationItem" id="BSk-aR-knd">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="hRG-7i-OV6">
+                            <connections>
+                                <action selector="onLogoutButton:" destination="07x-kg-udu" id="U5S-cY-hfr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uNX-xY-ou3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2072.8000000000002" y="39.130434782608695"/>
+            <point key="canvasLocation" x="1748" y="123"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PyP-SQ-IAS">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bKS-cz-tZU" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TweetsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="bKS-cz-tZU" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="S9N-FY-gVO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -81,7 +87,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H40-5R-J1A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="975" y="43"/>
+            <point key="canvasLocation" x="964" y="123"/>
         </scene>
     </scenes>
 </document>
