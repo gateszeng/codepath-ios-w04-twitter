@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		342906F21E6BC9EA00785D6C /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342906F11E6BC9EA00785D6C /* TweetCell.swift */; };
 		345CC4451E654781005F67A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345CC4441E654781005F67A7 /* AppDelegate.swift */; };
 		345CC44A1E654781005F67A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 345CC4481E654781005F67A7 /* Main.storyboard */; };
 		345CC44C1E654781005F67A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 345CC44B1E654781005F67A7 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		0B35FDB6B8D7DD3426FDC687 /* Pods-tweeter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tweeter.release.xcconfig"; path = "Pods/Target Support Files/Pods-tweeter/Pods-tweeter.release.xcconfig"; sourceTree = "<group>"; };
+		342906F11E6BC9EA00785D6C /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		345CC4411E654781005F67A7 /* tweeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tweeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		345CC4441E654781005F67A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		345CC4491E654781005F67A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			children = (
 				345CC4561E654E7F005F67A7 /* LoginViewController.swift */,
 				345CC4631E65FBC0005F67A7 /* TweetsViewController.swift */,
+				342906F11E6BC9EA00785D6C /* TweetCell.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				345CC45C1E656248005F67A7 /* User.swift in Sources */,
+				342906F21E6BC9EA00785D6C /* TweetCell.swift in Sources */,
 				345CC45E1E65624F005F67A7 /* Tweet.swift in Sources */,
 				345CC4641E65FBC0005F67A7 /* TweetsViewController.swift in Sources */,
 				345CC4571E654E7F005F67A7 /* LoginViewController.swift in Sources */,

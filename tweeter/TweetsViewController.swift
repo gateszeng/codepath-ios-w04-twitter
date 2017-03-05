@@ -7,14 +7,20 @@
 //
 
 import UIKit
+import AFNetworking
 
-class TweetsViewController: UIViewController {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    @IBOutlet weak var tweetsTableView: UITableView!
 
-    var tweets: [Tweet]!
+    var tweets: [Tweet]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.tweetsTableView.dataSource = self
+        self.tweetsTableView.delegate = self
+        self.tweetsTableView.estimatedRowHeight = 200
+        self.tweetsTableView.rowHeight = UITableViewAutomaticDimension
         
         TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
             self.tweets = tweets
@@ -22,6 +28,8 @@ class TweetsViewController: UIViewController {
             for tweet in tweets {
                 print(tweet.text)
             }
+            
+            self.tweetsTableView.reloadData()
             
         }, failure: { (error: Error) in
             print(error.localizedDescription)
@@ -36,6 +44,29 @@ class TweetsViewController: UIViewController {
     
     @IBAction func onLogoutButton(_ sender: AnyObject) {
         TwitterClient.sharedInstance?.logout()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tweetsTableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
+        let currentTweet = tweets![indexPath.row]
+        let currentUser = (currentTweet.creator)!
+        cell.profileView.setImageWith(currentUser.profileURL!)
+        cell.nameLabel.text = currentUser.name
+        cell.screenNameLabel.text = currentUser.screenname
+        cell.descriptionLabel.text = currentTweet.text
+        cell.timeLabel.text = currentTweet.timeString
+        cell.id = currentTweet.postID
+        
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let tweets = tweets {
+            return tweets.count
+        } else {
+            return 0;
+        }
     }
 
     /*

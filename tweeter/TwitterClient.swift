@@ -92,4 +92,17 @@ class TwitterClient: BDBOAuth1SessionManager {
                 
         })
     }
+    
+    func sendFavorite(id: String) {
+        post("1.1/favorites/create.json?id=" + id, parameters: nil, progress: nil, success: nil, failure: nil)
+        print("favorite sent")
+    }
+    
+    func sendRetweet(id: String) {
+        post("1.1/statuses/retweet/" + id + ".json", parameters: nil, progress: nil, success: nil, failure: nil)
+        print("retweet sent")
+    }
+    
+    
+    
 }

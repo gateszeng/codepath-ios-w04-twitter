@@ -34,23 +34,27 @@ class User: NSObject {
         
     }
     
-    // hidden currentUser object
+    // hidden currentUser class variable
     static var _currentUser: User?
     
     class var currentUser: User? {
         
         // getter that will grab from UserDefaults
         get {
+            let defaults = UserDefaults.standard
+
             // if the currentUser reference is nil, then check the UserDefaults
-            if _currentUser != nil {
-                let defaults = UserDefaults.standard
+            if _currentUser == nil {
                 
-                let userData = defaults.object(forKey: "currentUserData") as?NSData
+                guard let defaultData = defaults.object(forKey: "currentUserData") else {
+                    return nil
+                }
+                
+                let userData = defaultData as? Data
                 
                 // if there exists userData stored, then convert from JSON to User object
                 if let userData = userData {
-                    
-                    let dictionary = try! JSONSerialization.jsonObject(with: userData as Data, options: []) as! NSDictionary
+                    let dictionary = try! JSONSerialization.jsonObject(with: userData, options: []) as! NSDictionary
                     
                     _currentUser = User(dictionary: dictionary)
                 }
@@ -64,14 +68,18 @@ class User: NSObject {
             let defaults = UserDefaults.standard
             
             if let user = user {
-                
                 let data = try! JSONSerialization.data(withJSONObject: user.dictionary!, options: [])
                 defaults.set(data, forKey: "currentUserData")
                 
+                let userData = defaults.object(forKey: "currentUserData") as? Data
+                
+                let dictionary = try! JSONSerialization.jsonObject(with: userData!, options: []) as! NSDictionary
+
+                print("converted to json")
+                print(dictionary)
+                
             } else {
-                
-                defaults.set(nil, forKey: "currentUserData")
-                
+                defaults.removeObject(forKey: "currentUserData")
             }
             
             defaults.synchronize()
