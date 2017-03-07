@@ -508,9 +508,23 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Reply" id="Ise-Yl-FgJ">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="D8h-cd-EJR"/>
-                        <barButtonItem key="rightBarButtonItem" title="Post" id="Gde-M1-pXr"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="D8h-cd-EJR">
+                            <connections>
+                                <action selector="onCancelButton:" destination="rAN-Ud-Y1o" id="VRn-H5-clj"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Post" id="Gde-M1-pXr">
+                            <connections>
+                                <action selector="onPostButton:" destination="rAN-Ud-Y1o" id="lRY-cd-QHo"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="nameLabel" destination="wcr-v8-0Z2" id="qtE-wh-FEj"/>
+                        <outlet property="profileView" destination="lXC-E6-Ti9" id="XDd-na-puw"/>
+                        <outlet property="replyField" destination="fmg-VF-tp7" id="oN2-Lw-Bzy"/>
+                        <outlet property="screenNameLabel" destination="YBD-l2-7Od" id="Lc7-zj-txw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yjz-ld-uxm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -555,7 +569,7 @@
         <!--Navigation Controller-->
         <scene sceneID="JV3-y1-Waf">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aTx-el-gZe" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ReplyNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="aTx-el-gZe" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PWB-dR-Znh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

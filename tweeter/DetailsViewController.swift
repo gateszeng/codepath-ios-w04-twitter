@@ -40,6 +40,12 @@ class DetailsViewController: UIViewController {
     }
     
     @IBAction func onReplyButton(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let nc = storyboard.instantiateViewController(withIdentifier: "ReplyNavigationController")
+        let vc = nc.childViewControllers.first as! ReplyViewController
+        vc.tweet = thisTweet
+        
+        present(nc, animated: true, completion: nil)
     }
     
     /*

@@ -115,6 +115,18 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    func postNewReply(tweetString: String, id: String) {
+        let encodedTweet = tweetString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        print(encodedTweet)
+        post("1.1/statuses/update.json?status=\(encodedTweet)&in_reply_to_status_id=\(id)" , parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            // post success code here
+            print("status updated with: " + tweetString)
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            print(error.localizedDescription)
+            print("status update failed")
+        })
+    }
+    
     
     
 }

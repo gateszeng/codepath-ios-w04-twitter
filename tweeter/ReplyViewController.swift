@@ -9,9 +9,20 @@
 import UIKit
 
 class ReplyViewController: UIViewController {
+    @IBOutlet weak var profileView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var screenNameLabel: UILabel!
+    @IBOutlet weak var replyField: UITextField!
+    
+    var tweet: Tweet!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        profileView.setImageWith((tweet.creator?.profileURL)!)
+        nameLabel.text = tweet.creator?.name
+        screenNameLabel.text = tweet.creator?.screenname
+        replyField.text = "@\(tweet.creator!.screenname!) "
 
         // Do any additional setup after loading the view.
     }
@@ -21,6 +32,14 @@ class ReplyViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onPostButton(_ sender: Any) {
+        TwitterClient.sharedInstance?.postNewReply(tweetString: replyField.text!, id: tweet.postID!)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func onCancelButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation

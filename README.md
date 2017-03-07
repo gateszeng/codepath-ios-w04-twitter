@@ -60,7 +60,7 @@ Furthermore, there was a bug with the video series, since a few TAs also had thi
 
 # Project 5 - *Tweeter*
 
-Time spent: **5.5** hours spent in total
+Time spent: **6.5** hours spent in total
 
 ## User Stories
 
