@@ -87,7 +87,7 @@ class TwitterClient: BDBOAuth1SessionManager {
             let tweets = Tweet.tweetsWithArray(dictionaries: dictionaries)
             
             success(tweets)
-        }, failure: { (twwask: URLSessionDataTask?, error: Error) in
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
             failure(error)
                 
         })
@@ -101,6 +101,18 @@ class TwitterClient: BDBOAuth1SessionManager {
     func sendRetweet(id: String) {
         post("1.1/statuses/retweet/" + id + ".json", parameters: nil, progress: nil, success: nil, failure: nil)
         print("retweet sent")
+    }
+    
+    func postNewTweet(tweetString: String) {
+        let encodedTweet = tweetString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        print(encodedTweet)
+        post("1.1/statuses/update.json?status=\(encodedTweet)" , parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            // post success code here
+            print("status updated with: " + tweetString)
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            print(error.localizedDescription)
+            print("status update failed")
+        })
     }
     
     

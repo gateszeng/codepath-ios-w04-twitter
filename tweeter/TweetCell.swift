@@ -39,5 +39,11 @@ class TweetCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    func userTappedProfileImage(sender: UITapGestureRecognizer) {
+        if let imageView = sender.view as? UIImageView {
+            let cell = imageView.superview?.superview as? TweetCell
+            
+        }
+    }
 }
