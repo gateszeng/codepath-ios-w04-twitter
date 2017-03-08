@@ -65,9 +65,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         cell.timeLabel.text = currentTweet.timeString
         cell.id = currentTweet.postID
         
-        let tapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(TweetsViewController.userTappedProfileImage(sender:)))
-        cell.profileView.addGestureRecognizer(tapGestureRecognizer)
-        cell.profileView.isUserInteractionEnabled = true
+        cell.tweet = currentTweet
+        cell.delegate = self
 
         return cell
     }
@@ -77,13 +76,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             return tweets.count
         } else {
             return 0;
-        }
-    }
-    
-    func userTappedProfileImage(sender: UITapGestureRecognizer) {
-        if let imageView = sender.view as? UIImageView,
-            let cell = imageView.superview?.superview as? TweetCell {
-            performSegue(withIdentifier: "showProfileSegue", sender: cell)
         }
     }
 
@@ -99,31 +91,16 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         let currentTweet = tweets?[(indexPath?.row)!]
         
         let destinationViewController = segue.destination as! DetailsViewController
-        destinationViewController.thisTweet = currentTweet!
-        return
-        
-        switch segue.identifier! {
-        case "showProfileSegue":
-            if let senderCell = sender as? UITableViewCell,
-                let indexPath = tweetsTableView.indexPath(for: senderCell) {
-                let tweet = tweets![indexPath.row]
-                let user = tweet.creator
-                let profileViewController = segue.destination as! ProfileViewController
-                profileViewController.user = user
-            }
-        default:
-            let cell = sender as! TweetCell
-            let indexPath = self.tweetsTableView.indexPath(for: cell)
-            let currentTweet = tweets?[(indexPath?.row)!]
-            
-            let destinationViewController = segue.destination as! DetailsViewController
-            destinationViewController.thisTweet = currentTweet!
-        }
-        
-
-        
-        
+        destinationViewController.thisTweet = currentTweet!        
     }
-    
+}
 
+extension TweetsViewController: TweetTableViewCellDelegate {
+    func profileImageViewTapped(cell: TweetCell, user: User) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController {
+            profileVC.user = user
+            self.navigationController?.pushViewController(profileVC, animated: true)
+        }
+    }
 }

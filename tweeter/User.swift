@@ -30,9 +30,9 @@ class User: NSObject {
         name = dictionary["name"] as? String
         screenname = dictionary["screen_name"] as? String
         
-        tweetCount = dictionary["statuses_count"] as? String
-        followersCount = dictionary["followers_count"] as? String
-        followingCount = dictionary["friends_count"] as? String
+        tweetCount = String(describing: dictionary["statuses_count"] as! Int64)
+        followersCount = String(describing: dictionary["followers_count"] as! Int64)
+        followingCount = String(describing: dictionary["friends_count"] as! Int64)
         
         let profileURLString = dictionary["profile_image_url_https"] as? String
         if let profileURLString = profileURLString {

@@ -26,9 +26,9 @@ class ProfileViewController: UIViewController {
         profileImageView.setImageWith(user.profileURL!)
         nameLabel.text = user.name
         screenNameLabel.text = user.screenname
-        numTweetsLabel.text = user.tweetCount
-        numFollowersLabel.text = user.followersCount
-        numFollowingLabel.text = user.followingCount
+        numTweetsLabel.text = user.tweetCount!
+        numFollowersLabel.text = user.followersCount!
+        numFollowingLabel.text = user.followingCount!
         
         // Do any additional setup after loading the view.
     }

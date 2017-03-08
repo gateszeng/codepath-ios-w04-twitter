@@ -60,7 +60,7 @@ Furthermore, there was a bug with the video series, since a few TAs also had thi
 
 # Project 5 - *Tweeter*
 
-Time spent: **6.5** hours spent in total
+Time spent: **9** hours spent in total
 
 ## User Stories
 
@@ -70,7 +70,7 @@ The following **required** functionality is completed:
 - [x] Profile page:
    - [x] Contains the user header view
    - [x] Contains a section with the users basic stats: # tweets, # following, # followers
-- [ ] Home Timeline: Tapping on a user image should bring up that user's profile page
+- [x] Home Timeline: Tapping on a user image should bring up that user's profile page
 - [x] Compose Page: User can compose a new tweet by tapping on a compose button.
 
 The following **optional** features are implemented:
@@ -100,13 +100,14 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/2wvbbll.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
 Describe any challenges encountered while building the app.
+I thought that creating the gestureRecognizer and having the segue run when the imageView was tapped was very tricky.  I found a discussions post about it, which helped me a lot.
 
 ## License
 
